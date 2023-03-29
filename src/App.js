@@ -17,19 +17,6 @@ console.log(photos);
 
   return (
     <div>
-      {/* <ul className="card-list">
-        {photos.map((photo) => (
-          <li className="card" key={photo.id}>
-            <img key={photo.id} src={photo.url} alt={photo.title} />
-  
-            <div className="card__info"> 
-              <p>{photo.title}</p>
-            </div>
-            
-
-          </li>
-        ))}
-      </ul> */}
       < CardsList  photos={photos}/>
     </div>
   );
