@@ -2,6 +2,7 @@ import './App.css';
 import CardsList from './components/cardsList/CardsList';
 import { useEffect, useState } from 'react';
 import { URL } from './constants/constants';
+import Layout from './layout/Layout/Layout';
 
 function App() {
 
@@ -17,9 +18,9 @@ useEffect(() => {
 console.log(photos);
 
   return (
-    <div>
-      < CardsList  photos={photos}/>
-    </div>
+    <Layout>
+      <CardsList  photos={photos}/>
+    </Layout>
   );
 }
 
