@@ -1,10 +1,11 @@
 import './App.css';
 import CardsList from './components/cardsList/CardsList';
 import { useEffect, useState } from 'react';
+import { URL } from './constants/constants';
 
 function App() {
 
-const URL = 'https://jsonplaceholder.typicode.com/photos';
+
 const [photos, setPhotos] = useState([]);
 
 useEffect(() => {
