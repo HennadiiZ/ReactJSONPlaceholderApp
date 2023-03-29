@@ -1,14 +1,11 @@
 import './App.css';
+import CardsList from './components/cardsList/CardsList';
 import { useEffect, useState } from 'react';
-
-
 
 function App() {
 
 const URL = 'https://jsonplaceholder.typicode.com/photos';
 const [photos, setPhotos] = useState([]);
-
-
 
 useEffect(() => {
   fetch(URL)
@@ -20,7 +17,7 @@ console.log(photos);
 
   return (
     <div>
-      <ul className="card-list">
+      {/* <ul className="card-list">
         {photos.map((photo) => (
           <li className="card" key={photo.id}>
             <img key={photo.id} src={photo.url} alt={photo.title} />
@@ -32,7 +29,8 @@ console.log(photos);
 
           </li>
         ))}
-      </ul>
+      </ul> */}
+      < CardsList  photos={photos}/>
     </div>
   );
 }
