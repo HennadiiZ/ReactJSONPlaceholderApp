@@ -12,7 +12,6 @@ const CardItem = (props) => {
     //    </div>
     // </li>
 
-
     // <Link to={`/cities/${props.id}`} className={classes.link}>  
     <li className={classes.card} key={props.id}>
       <Link to={`/cards/1`} className={classes.card__info}> 

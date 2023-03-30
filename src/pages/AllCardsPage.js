@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { URL } from '../constants/constants';
 import CardsList from '../components/cardsList/CardsList';
+import Spinner from '../ui/spinner/Spinner';
 
 const AllCardsPage = () => {
 //   const cityCtx = useContext(DataContext); 
@@ -17,7 +18,7 @@ console.log(photos);
   return (
     <section>
       <div>        
-        {photos.length === 0 && 'Loading...'}
+        {photos.length === 0 && <div style={{'textAlign': 'center', 'marginTop': '150px'}}> <Spinner /> </div>}
         <CardsList  photos={photos}/>
       </div>
     </section>  
