@@ -4,7 +4,6 @@ import CardItem from '../cardItem/CardItem';
 // import { URL } from '../../constants/constants';
 
 const CardsList = (props) => {
-
   return (
     <ul className={classes.list}>
       { 
