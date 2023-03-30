@@ -4,6 +4,7 @@
   flex-direction: column;
   flex: 1;
   min-width: 300px; 
+  color: white;
 }
 
 .card__info {
@@ -20,6 +21,10 @@
     max-width: 100%;
     height: auto;
   }
+}
+
+.link {
+  text-decoration: none;
 }
 
 // .card__info img {
