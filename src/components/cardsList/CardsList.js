@@ -1,4 +1,4 @@
-import classes from './CardsList.module.css';
+import classes from './CardsList.module.scss';
 import CardItem from '../cardItem/CardItem';
 import { useEffect, useState } from 'react';
 

@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import CardsList from './components/cardsList/CardsList';
 import { useEffect, useState } from 'react';
 import { URL } from './constants/constants';
@@ -25,3 +25,6 @@ console.log(photos);
 }
 
 export default App;
+
+// npm install node-sass --save-dev 
+// npm install sass
