@@ -12,8 +12,14 @@ const DataContext = React.createContext({
 });
 
 export const DataContextProvider = (props) => {
-  const [cardItems, setCardItems] = useState([]);
+  // const [cardItems, setCardItems] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
+
+  const [cardItems, setCardItems] = useState(() => {
+    const storedItems = localStorage.getItem('cardItems');
+    return storedItems ? JSON.parse(storedItems) : [];
+  });
   
 
   useEffect( () => {
@@ -33,11 +39,17 @@ export const DataContextProvider = (props) => {
         console.error("Error:", error.message);
       }
       console.log(cardItems);
+      setIsLoading(false);
     };
 
     fetchCards();
     // fetchCards(setIsLoading, setCardItems)
   }, []);
+
+
+  useEffect(() => {
+    localStorage.setItem('cardItems', JSON.stringify(cardItems));
+  }, [cardItems]);
 
 
 
