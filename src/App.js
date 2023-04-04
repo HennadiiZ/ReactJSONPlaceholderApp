@@ -5,6 +5,7 @@ import AllCardsPage from './pages/AllCardsPage';
 import DetailsCardPage from './pages/DetailsCardPage';
 
 function App() {
+
   return (
     <Layout>
       <main>
