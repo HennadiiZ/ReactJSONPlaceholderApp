@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { URL } from '../constants/constants';
+import { fetchCards } from '../_apis/apis';
 
 const DataContext = React.createContext({
   cards: [],
@@ -11,21 +12,12 @@ const DataContext = React.createContext({
 });
 
 export const DataContextProvider = (props) => {
-  const [cards, setCards] = useState([]);
+  const [cardItems, setCardItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   
+
   useEffect( () => {
     setIsLoading(true); 
-
-
-    // fetch(URL)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data)
-    //     setCards('data212233', data.slice(0, 20))
-    // });
-
-
     const fetchCards = async () => {
       try {
         const response = await fetch(`${URL}`);
@@ -33,20 +25,18 @@ export const DataContextProvider = (props) => {
           throw new Error("Data not found");
         }
         const data = await response.json();
-      
-        const listOfCards = [];
-      
-        for(const key in data) {
-          listOfCards.push({itemId: key, ...data[key]});
-        }
-        setIsLoading(false);
-        setCards(listOfCards.slice(0, 20));
+            
+        console.log(data.slice(0, 20));
+        setCardItems(data.slice(0, 20));
+
       } catch (error) {
         console.error("Error:", error.message);
       }
+      console.log(cardItems);
     };
 
     fetchCards();
+    // fetchCards(setIsLoading, setCardItems)
   }, []);
 
 
@@ -56,11 +46,11 @@ export const DataContextProvider = (props) => {
 
 
   const addCardHandler = (newCard) => {
-    setCards([...cards, newCard]);
+    setCardItems([...cardItems, newCard]);
   };
 
   const removeCardHandler = (itemId) => {
-    setCards((prevCard) => {
+    setCardItems((prevCard) => {
       return prevCard.filter(item => item.id !== itemId);
     }); 
   };
@@ -81,8 +71,8 @@ export const DataContextProvider = (props) => {
   };
 
   const context= {
-    cards: cards, 
-    totalCards: cards.length, 
+    cards: cardItems, 
+    totalCards: cardItems.length, 
     loading: isLoading,
     addCard: addCardHandler,
     removeCard: removeCardHandler,

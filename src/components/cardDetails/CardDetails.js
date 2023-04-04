@@ -12,7 +12,8 @@ const CardDetails = (props) => {
     return +item.id ===  +props.cardId
   }); 
 
-  console.log('card', card);
+  // console.log('card', card);
+  console.log('cardsssssss', cardsCtx?.cards);
 
   return (
     <section className={classes.card_body}>
