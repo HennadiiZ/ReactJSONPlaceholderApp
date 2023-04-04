@@ -27,30 +27,26 @@ export const DataContextProvider = (props) => {
 
 
     const fetchCards = async () => {
-        try {
-          const response = await fetch(`${URL}`);
-          if (!response.ok) {
-            throw new Error("Data not found");
-          }
-          const data = await response.json();
-        
-          const listOfCards = [];
-      
-          for(const key in data) {
-            listOfCards.push({itemId: key, ...data[key]});
-          }
-          setIsLoading(false);
-          setCards(listOfCards.slice(0, 20));
-
-        //   console.log('listOfCards', listOfCards);
-
-        } catch (error) {
-          console.error("Error:", error.message);
+      try {
+        const response = await fetch(`${URL}`);
+        if (!response.ok) {
+          throw new Error("Data not found");
         }
+        const data = await response.json();
+      
+        const listOfCards = [];
+      
+        for(const key in data) {
+          listOfCards.push({itemId: key, ...data[key]});
+        }
+        setIsLoading(false);
+        setCards(listOfCards.slice(0, 20));
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
     };
 
     fetchCards();
-    // console.log('cards', cards);
   }, []);
 
 

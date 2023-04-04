@@ -1,0 +1,40 @@
+.card {
+  padding: 1rem;
+  min-width: 50%; 
+  display: flex;
+  justify-content: center;
+
+  &__btns {
+    display: flex;
+    justify-content: flex-end;
+
+    .btn_edit, .btn_back {
+      background: rgb(112, 153, 243);
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 3px;
+      min-width: 80px;
+
+      &:last-child {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.card__info {
+  background-color: #999999;
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 50%; 
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
