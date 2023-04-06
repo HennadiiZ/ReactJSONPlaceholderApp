@@ -3,21 +3,22 @@
   min-width: 50%; 
   display: flex;
   justify-content: center;
+}
 
-  &__btns {
-    display: flex;
-    justify-content: flex-end;
+.input_wrapper, .btns_wrapper {
+  display: flex;
+  justify-content: flex-end;
 
-    .btn_edit, .btn_back {
-      background: rgb(112, 153, 243);
-      padding: 10px;
-      border: 1px solid black;
-      border-radius: 3px;
-      min-width: 80px;
+  .btn_edit, .btn_back {
+    background: rgb(112, 153, 243);
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+    min-width: 80px;
+    cursor: pointer;
 
-      &:last-child {
-        margin-left: 10px;
-      }
+    &:last-child {
+      margin-left: 10px;
     }
   }
 }
@@ -36,5 +37,10 @@
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  input {
+    width: 100%;
+    margin: 16px 0;
   }
 }

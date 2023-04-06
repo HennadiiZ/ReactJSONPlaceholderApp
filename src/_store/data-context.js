@@ -24,6 +24,7 @@ export const DataContextProvider = (props) => {
 
   useEffect( () => {
     setIsLoading(true); 
+
     const fetchCards = async () => {
       try {
         const response = await fetch(`${URL}`);
@@ -32,7 +33,8 @@ export const DataContextProvider = (props) => {
         }
         const data = await response.json();
             
-        console.log(data.slice(0, 20));
+        // console.log(data.slice(0, 20));
+        // setIsLoading(false);
         setCardItems(data.slice(0, 20));
 
       } catch (error) {
