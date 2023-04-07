@@ -9,22 +9,25 @@ const CardDetails = (props) => {
  
   const card = cardsCtx?.cards?.find(item => +item.id ===  +props.cardId); 
 
-  const [title, setTitle] = useState(card.title); // ---------
-  const [showUpdateButton, setShowUpdateButton] = useState(false); // ---------
+  const [title, setTitle] = useState(card.title); 
+  const [showUpdateButton, setShowUpdateButton] = useState(false); 
   
   useEffect(() => {
     setTitle(card.title);
   }, [card.title]);
 
-  const titleChangeHandler = (event) => {  // ---------
-    setTitle(event.target.value);
+  const titleChangeHandler = (e) => { 
+    e.preventDefault(); 
+    setTitle(e.target.value);
   };
 
-  const titleEditHandler = () => {
+  const titleEditHandler = (e) => {
+    e.preventDefault();
     setShowUpdateButton(true);
   };
 
-  const titleUpdateHandler = () => { 
+  const titleUpdateHandler = (e) => { 
+    e.preventDefault();
     setShowUpdateButton(false);
     const updatedCard = { ...card, title };
     cardsCtx.updateCard(card.id, updatedCard);
@@ -32,8 +35,15 @@ const CardDetails = (props) => {
     console.log(cardsCtx.cards);
   };
 
-  const goBackHandler = () => {
+  const goBackHandler = (e) => {
+    e.preventDefault();
     history('/cards');
+  };
+
+  const deleteItemHandler = (e) => {
+    e.preventDefault();
+    history('/cards');
+    cardsCtx.removeCard(card.id);
   };
 
   return (
@@ -66,6 +76,15 @@ const CardDetails = (props) => {
                   Update
                 </button>
               )}
+
+              <button 
+                className={classes.btn_delete}
+                type='button' 
+                onClick={deleteItemHandler}
+              >
+                Delete
+              </button>
+
               <button 
                 type='button' 
                 className={classes.btn_back}

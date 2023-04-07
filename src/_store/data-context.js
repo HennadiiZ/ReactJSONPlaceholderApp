@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { URL } from '../constants/constants';
+import { URL, AMOUNT_OF_CARDS } from '../constants/constants';
 // import { fetchCards } from '../_apis/apis';
 
 const DataContext = React.createContext({
@@ -32,7 +32,7 @@ export const DataContextProvider = (props) => {
           throw new Error("Data not found");
         }
         const data = await response.json();
-        setCardItems(data.slice(0, 20));
+        setCardItems(data.slice(0, AMOUNT_OF_CARDS));
 
       } catch (error) {
         console.error("Error:", error.message);
@@ -40,9 +40,7 @@ export const DataContextProvider = (props) => {
       console.log(cardItems);
       setIsLoading(false);
     };
-
     fetchCards();
-
     // localStorage.setItem('cardItems', JSON.stringify(cardItems));
   }, []);
 
