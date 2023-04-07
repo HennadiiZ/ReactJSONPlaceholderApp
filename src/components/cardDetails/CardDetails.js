@@ -32,7 +32,7 @@ const CardDetails = (props) => {
     console.log(cardsCtx.cards);
   };
 
-  const goBackeHandler = () => {
+  const goBackHandler = () => {
     history('/cards');
   };
 
@@ -69,7 +69,7 @@ const CardDetails = (props) => {
               <button 
                 type='button' 
                 className={classes.btn_back}
-                onClick={goBackeHandler}
+                onClick={goBackHandler}
               >
                 Go back
               </button>

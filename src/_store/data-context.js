@@ -42,6 +42,8 @@ export const DataContextProvider = (props) => {
     };
 
     fetchCards();
+
+    // localStorage.setItem('cardItems', JSON.stringify(cardItems));
   }, []);
 
 
@@ -102,3 +104,8 @@ export const DataContextProvider = (props) => {
 }
 
 export default DataContext;
+
+
+// create a React app with createContext and https://jsonplaceholder.typicode.com/photos
+// display a list of cards with data. You can click on a card and open it on a new page. 
+// Add functionality that will update data, use method: 'PUT'
