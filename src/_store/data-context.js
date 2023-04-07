@@ -59,6 +59,23 @@ export const DataContextProvider = (props) => {
     setCardItems((prevCard) => {
       return prevCard.filter(item => item.id !== itemId);
     }); 
+
+    for(const key of cardItems) {
+      if (key.id === itemId) {    
+        fetch(
+          `https://jsonplaceholder.typicode.com/photos/${key.itemId}`, 
+          {
+            method: 'DELETE',
+          }
+        )
+        .then(() => {
+          console.log('Item deleted successfully!');
+        })
+        .catch((error) => {
+          console.error('Error deleting item:', error);
+        });
+      } 
+    };
   };
 
   const updateCardHandler = async (itemId, updatedCard) => {

@@ -7,25 +7,8 @@ const CardItem = (props) => {
   const cardsCtx = useContext(DataContext); 
 
   const deleteItemHandler = (e) => {
-    e.preventDefault();    
-    for(const key of cardsCtx.cards) {
-      if (key.id === props.id) {
-        cardsCtx.removeCard(key.id);
-        
-        fetch(
-          `https://jsonplaceholder.typicode.com/photos/${key.itemId}`, 
-          {
-            method: 'DELETE',
-          }
-        )
-        .then(() => {
-          console.log('Item deleted successfully!');
-        })
-        .catch((error) => {
-          console.error('Error deleting item:', error);
-        });
-      } 
-    };
+    e.preventDefault();
+    cardsCtx.removeCard(props.id);
   };
 
   return (
