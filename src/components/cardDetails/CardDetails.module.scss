@@ -9,7 +9,7 @@
   display: flex;
   justify-content: flex-end;
 
-  .btn_edit, .btn_back, .btn_delete {
+  button {
     background: rgb(112, 153, 243);
     padding: 10px;
     border: 1px solid black;
@@ -47,5 +47,18 @@
   input {
     width: 100%;
     margin: 16px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .input_wrapper, .btns_wrapper {
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      width: 100%;
+      margin-bottom: 5px;
+      margin-left: 0;
+    }
   }
 }

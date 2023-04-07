@@ -1,7 +1,5 @@
 import classes from './CardsList.module.scss';
 import CardItem from '../cardItem/CardItem';
-// import { useEffect, useState } from 'react';
-// import { URL } from '../../constants/constants';
 
 const CardsList = (props) => {
   return (
