@@ -1,20 +1,20 @@
 import classes from './CardDetails.module.scss';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import DataContext from '../../_store/data-context'; 
+import { useNavigate  } from 'react-router-dom';
 
 const CardDetails = (props) => {
   const cardsCtx = useContext(DataContext); 
+  const history = useNavigate();
  
-  // const card = cardsCtx?.cards?.find(item => +item.id ===  +props.cardId); 
-
-  const card = cardsCtx?.cards?.find(item => {
-    console.log('item.id', item.id);
-    console.log('props.cardId', props.cardId);
-    return +item.id ===  +props.cardId
-  }); 
+  const card = cardsCtx?.cards?.find(item => +item.id ===  +props.cardId); 
 
   const [title, setTitle] = useState(card.title); // ---------
   const [showUpdateButton, setShowUpdateButton] = useState(false); // ---------
+  
+  useEffect(() => {
+    setTitle(card.title);
+  }, [card.title]);
 
   const titleChangeHandler = (event) => {  // ---------
     setTitle(event.target.value);
@@ -24,35 +24,17 @@ const CardDetails = (props) => {
     setShowUpdateButton(true);
   };
 
-  // const handleTitleUpdate = () => { // ---------
-  //   axios
-  //     .put(`https://jsonplaceholder.typicode.com/photos/${photo.id}`, {
-  //       title: title,
-  //     })
-  //     .then((response) => console.log(response.data))
-  //     .catch((error) => console.log(error));
-  // };
-
-  const titleUpdateHandler = () => {
+  const titleUpdateHandler = () => { 
     setShowUpdateButton(false);
-    console.log('cardsssssss', cardsCtx?.cards);
+    const updatedCard = { ...card, title };
+    cardsCtx.updateCard(card.id, updatedCard);
 
-    fetch(`https://jsonplaceholder.typicode.com/photos/${card.id}`, {
-      method: "PUT",
-      body: JSON.stringify({ title: title }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => console.log(error));
+    console.log(cardsCtx.cards);
   };
 
-  // console.log('card', card);
-  // console.log('cardsssssss', cardsCtx?.cards);
+  const goBackeHandler = () => {
+    history('/cards');
+  };
 
   return (
     <section className={classes.card_body}>
@@ -62,8 +44,6 @@ const CardDetails = (props) => {
           { !showUpdateButton && <p>{title}</p>}
 
           <form>
-            {/* <p>{card.title}</p> */}
-            {/* <p>{title}</p> */}
             <div className={classes.input_wrapper}>
               { showUpdateButton && <input type="text" value={title} onChange={titleChangeHandler} />}
             </div>
@@ -86,7 +66,13 @@ const CardDetails = (props) => {
                   Update
                 </button>
               )}
-              <button type='button' className={classes.btn_back}>Go back</button>
+              <button 
+                type='button' 
+                className={classes.btn_back}
+                onClick={goBackeHandler}
+              >
+                Go back
+              </button>
             </div>
           </form>
 

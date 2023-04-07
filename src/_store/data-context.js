@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { URL } from '../constants/constants';
-import { fetchCards } from '../_apis/apis';
+// import { fetchCards } from '../_apis/apis';
 
 const DataContext = React.createContext({
   cards: [],
@@ -32,9 +32,6 @@ export const DataContextProvider = (props) => {
           throw new Error("Data not found");
         }
         const data = await response.json();
-            
-        // console.log(data.slice(0, 20));
-        // setIsLoading(false);
         setCardItems(data.slice(0, 20));
 
       } catch (error) {
@@ -45,19 +42,12 @@ export const DataContextProvider = (props) => {
     };
 
     fetchCards();
-    // fetchCards(setIsLoading, setCardItems)
   }, []);
 
 
   useEffect(() => {
     localStorage.setItem('cardItems', JSON.stringify(cardItems));
   }, [cardItems]);
-
-
-
-
-
-
 
   const addCardHandler = (newCard) => {
     setCardItems([...cardItems, newCard]);
@@ -69,21 +59,32 @@ export const DataContextProvider = (props) => {
     }); 
   };
 
-  const updateCardHandler = (itemId, card) => { 
-    // let idx;
-    // cards.forEach((item, index) => {  
+  const updateCardHandler = async (itemId, updatedCard) => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${itemId}`, {
+        method: 'PUT',
+        body: JSON.stringify(updatedCard),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Update failed');
+      }
 
-    //   if (item.id === itemId) {
-    //     // cards.splice(index, 1, card);
-    //     // console.log(cards)
-    //     idx = index;
-    //   }
-    // });
+      const updatedCardItem = await response.json();
+      const cardIndex = cardItems.findIndex((card) => card.id === updatedCardItem.id);
+      const updatedCardItems = [...cardItems];
+      updatedCardItems[cardIndex] = updatedCardItem;
 
-    // cards.splice(idx, 1, card);
-    // console.log(card, itemId);
+      setCardItems(updatedCardItems);
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+    setIsLoading(false);
   };
-
+  
   const context= {
     cards: cardItems, 
     totalCards: cardItems.length, 
