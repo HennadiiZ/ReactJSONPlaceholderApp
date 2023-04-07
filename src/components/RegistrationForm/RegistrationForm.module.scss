@@ -1,0 +1,48 @@
+.form_wrapper {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+
+.auth_input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.auth_input:focus {
+  outline: none;
+  border-color: #007bff; 
+}
+
+.auth_input::placeholder {
+  color: #ccc;
+}
+
+.auth_button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.auth_button:hover {
+  background-color: #0062cc;
+}
+
+.auth_input:invalid {
+  border-color: red; 
+}

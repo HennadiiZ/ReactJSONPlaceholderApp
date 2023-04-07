@@ -3,6 +3,7 @@ import Layout from './layout/Layout/Layout';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import AllCardsPage from './pages/AllCardsPage';
 import DetailsCardPage from './pages/DetailsCardPage';
+import AuthPage from './pages/AuthPage';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <main>
           <Routes>
             <Route path="*" element={<Navigate to="/cards" replace />}/>
+            <Route path='/auth' element={ <AuthPage/> } />
             <Route path='/cards/*' element={ <AllCardsPage/> } />
             <Route path='/cards/:cardId' element={ <DetailsCardPage/> } />
           </Routes>
