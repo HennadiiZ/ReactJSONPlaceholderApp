@@ -17,7 +17,7 @@ const RegistrationForm = () => {
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <label>
-          Username:
+          Email:
           <input
             type="text"
             value={username}
