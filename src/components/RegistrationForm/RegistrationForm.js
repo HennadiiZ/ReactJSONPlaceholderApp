@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import classes from './RegistrationForm.module.scss';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate, Link  } from 'react-router-dom';
 import { useRef } from "react";
 // import { useAuth } from '../../_store/auth-context';
 import { useAuth } from '../../_store/auth-context';
@@ -28,7 +28,7 @@ const RegistrationForm = () => {
       setError();
       setIsLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
-      history('/cards');
+      history('/auth/signin');
     } catch {
       setError('Failed to create an account');
     }
@@ -40,8 +40,8 @@ const RegistrationForm = () => {
   return (
     <section className={classes.form_wrapper}>
       <h1>Registration</h1>
-      { JSON.stringify(currentUser) }
-      { currentUser && currentUser.email }
+      {/* { JSON.stringify(currentUser) }
+      { currentUser && currentUser.email } */}
       { error && <p>{ error }</p>}
       <form onSubmit={submitHandler}>
         <label>
@@ -79,6 +79,9 @@ const RegistrationForm = () => {
         </label>
         <button disabled={isLoading} type="submit" className={classes.auth_button}>Sign Up</button>
       </form>
+      <p>
+        Have an account? <Link to="/auth/signin">Sign In</Link>
+      </p>
     </section>
   );
 };
