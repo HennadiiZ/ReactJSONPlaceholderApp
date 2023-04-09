@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import classes from './SigninForm.module.scss';
-import { useNavigate, Link  } from 'react-router-dom';
+import { useNavigate, Link, useHistory  } from 'react-router-dom';
 import { useRef } from "react";
 import { useAuth } from '../../_store/auth-context';
 
 const SigninForm = () => {
   const history = useNavigate();
+  // const history = useHistory();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,6 +22,7 @@ const SigninForm = () => {
       setIsLoading(true);
       await signin(emailRef.current.value, passwordRef.current.value);
       history('/cards');
+      // history.push('/cards');
     } catch {
       setError('Failed to sign in');
     }

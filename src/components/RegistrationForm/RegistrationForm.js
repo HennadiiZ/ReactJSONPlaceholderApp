@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import classes from './RegistrationForm.module.scss';
-import { useNavigate, Link  } from 'react-router-dom';
+import { useNavigate, Link, useHistory  } from 'react-router-dom';
 import { useRef } from "react";
 // import { useAuth } from '../../_store/auth-context';
 import { useAuth } from '../../_store/auth-context';
 
 const RegistrationForm = () => {
   const history = useNavigate();
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
+  // const history = useHistory();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,6 +30,7 @@ const RegistrationForm = () => {
       setIsLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
       history('/auth/signin');
+      // history.push('/cards');
     } catch {
       setError('Failed to create an account');
     }
