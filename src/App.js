@@ -8,6 +8,7 @@ import { AuthContextProvider } from './_store/auth-context';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import SigninForm from './components/SigninForm/SigninForm';
 import PrivateRoute from './components/privateRoute/PrivateRoute';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 
 function App() {
   return (
@@ -46,11 +47,12 @@ function App() {
       <Layout>
         <main>
           <Routes>
-            <Route path="*" element={<Navigate to="/cards" replace />}/>
+            {/* <Route path="*" element={<Navigate to="/cards" replace />}/> */}
   
             <Route path='/auth' element={ <AuthPage/> }>
               <Route path="signup" element={<RegistrationForm />} />
               <Route path="signin" element={<SigninForm />} />
+              <Route path="forgot" element={<ForgotPassword />} />
               <Route path="*" element={<Navigate to="/signup" replace />} />
             </Route>
               
