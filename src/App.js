@@ -7,6 +7,7 @@ import AuthPage from './pages/AuthPage';
 import { AuthContextProvider } from './_store/auth-context';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import SigninForm from './components/SigninForm/SigninForm';
+import PrivateRoute from './components/privateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -22,12 +23,31 @@ function App() {
   //   </main>
   // </Layout>
 
+    // <AuthContextProvider>
+    //   <Layout>
+    //     <main>
+    //       <Routes>
+    //         <Route path="*" element={<Navigate to="/cards" replace />}/>
+
+    //         <Route path='/auth' element={ <AuthPage/> }>
+    //           <Route path="signup" element={<RegistrationForm />} />
+    //           <Route path="signin" element={<SigninForm />} />
+    //           <Route path="*" element={<Navigate to="/signup" replace />} />
+    //         </Route>
+              
+    //         <Route path='/cards/*' element={ <AllCardsPage/> } />
+    //         <Route path='/cards/:cardId' element={ <DetailsCardPage/> } />
+    //       </Routes>
+    //     </main>
+    //   </Layout>
+    // </AuthContextProvider>
+
     <AuthContextProvider>
       <Layout>
         <main>
           <Routes>
             <Route path="*" element={<Navigate to="/cards" replace />}/>
-            
+  
             <Route path='/auth' element={ <AuthPage/> }>
               <Route path="signup" element={<RegistrationForm />} />
               <Route path="signin" element={<SigninForm />} />
