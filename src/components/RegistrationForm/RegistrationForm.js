@@ -26,7 +26,7 @@ const RegistrationForm = () => {
     }
 
     try {
-      setError();
+      setError('');
       setIsLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
       history('/auth/signin');

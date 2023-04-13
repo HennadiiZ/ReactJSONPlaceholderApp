@@ -18,7 +18,7 @@ const SigninForm = () => {
     event.preventDefault();
 
     try {
-      setError();
+      setError('');
       setIsLoading(true);
       await signin(emailRef.current.value, passwordRef.current.value);
       history('/cards');

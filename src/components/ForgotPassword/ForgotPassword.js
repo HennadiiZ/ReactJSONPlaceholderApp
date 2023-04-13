@@ -6,27 +6,27 @@ import { useAuth } from '../../_store/auth-context';
 
 const ForgotPassword = () => {
   const history = useNavigate();
-
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
   const emailRef = useRef();
-  const { signin, currentUser } = useAuth();
+  const { forgotPass, currentUser } = useAuth();
 
-  const signinHandler = async (event) => {
+  const resetPassHandler = async (event) => {
     event.preventDefault();
 
     try {
-      setError();
+      setMessage('');  
+      setError('');
       setIsLoading(true);
-      await signin(emailRef.current.value);
-      history('/cards');
-      // history.push('/cards');
+      await forgotPass(emailRef.current.value);
+      setMessage('Check your inbox for further instructions');
+      // history('/auth/signin');
     } catch {
-      setError('Failed to sign in');
+      setError('Failed to reset');
     }
 
-    setError('');
+    // setError('');
     setIsLoading(false);
   };
 
@@ -34,7 +34,8 @@ const ForgotPassword = () => {
     <section className={classes.form_wrapper}>
       <h1>Forgot Password</h1>
       { error && <p>{ error }</p>}
-      <form onSubmit={signinHandler}>
+      { message && <p>{ message }</p>}
+      <form onSubmit={resetPassHandler}>
         <label>
           Email:
           <input

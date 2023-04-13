@@ -23,6 +23,10 @@ export const AuthContextProvider = ({children}) => {
     return auth.signOut();
   };
 
+  const forgotPass = (email) => {
+    return auth.sendPasswordResetEmail(email);
+  };
+
   useEffect(()=>{
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user);
@@ -32,12 +36,12 @@ export const AuthContextProvider = ({children}) => {
     return unsubscribe;
   }, []);
 
-
   const value = {
     currentUser,
     signup,
     signin,
-    logout
+    logout,
+    forgotPass
   };
 
   return (
